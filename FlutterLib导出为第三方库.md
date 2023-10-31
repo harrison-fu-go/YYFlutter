@@ -3,12 +3,18 @@ IOS 篇：
  flutter create --template=package hello
 
 2. 先导出为： Flutter.xcframework， App.xcframework 动态库
+   
    flutter clean //clean一下
+   
    flutter packages get //更新依赖
+   
    //flutter build ios-framework --release --no-debug --no-profile --output=$libpath 这个用于只打包release包
+   
    flutter build ios-framework --output=$libpath //打包到指定的路径，注意：路径最好为：下面创建的xcode lib 库路径
+   
 3. 创建 Cocopods Lib 库
    pod lib create ILibrary //创建cocopods lib本地库
+   
    设置podspec 如下：
      Pod::Spec.new do |s|
   s.name             = 'FLUTTER_LIB' //设置库名称
