@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FLUTTER_LIB/FLUTTER_LIB.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/App.framework/App
+${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/Flutter.framework/Flutter
