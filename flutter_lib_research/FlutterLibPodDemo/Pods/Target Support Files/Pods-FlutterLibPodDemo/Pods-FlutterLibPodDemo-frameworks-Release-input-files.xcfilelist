@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo-frameworks.sh
-${BUILT_PRODUCTS_DIR}/FLUTTER_LIB/FLUTTER_LIB.framework
-${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/App.framework/App
-${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/Flutter.framework/Flutter
+${BUILT_PRODUCTS_DIR}/DemoLib/DemoLib.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/App.framework/App
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/Flutter.framework/Flutter
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/flutter_boost.framework/flutter_boost

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1826469C2AF49F4700708AEE /* App.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 182646992AF49F4700708AEE /* App.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1826469D2AF49F4700708AEE /* flutter_boost.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1826469A2AF49F4700708AEE /* flutter_boost.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1826469E2AF49F4700708AEE /* FlutterPluginRegistrant.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1826469B2AF49F4700708AEE /* FlutterPluginRegistrant.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		182646A02AF4A04100708AEE /* FlutterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1826469F2AF4A04100708AEE /* FlutterDelegate.swift */; };
 		18E596EF2AE2291500978164 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E596EE2AE2291500978164 /* AppDelegate.swift */; };
 		18E596F32AE2291500978164 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E596F22AE2291500978164 /* ViewController.swift */; };
 		18E596F62AE2291500978164 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18E596F42AE2291500978164 /* Main.storyboard */; };
@@ -29,6 +33,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1826469C2AF49F4700708AEE /* App.xcframework in Embed Frameworks */,
+				1826469D2AF49F4700708AEE /* flutter_boost.xcframework in Embed Frameworks */,
+				1826469E2AF49F4700708AEE /* FlutterPluginRegistrant.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +44,10 @@
 
 /* Begin PBXFileReference section */
 		0AB6D5A5902FEA18E3DC6A3E /* Pods-flutter-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flutter-demo.release.xcconfig"; path = "Target Support Files/Pods-flutter-demo/Pods-flutter-demo.release.xcconfig"; sourceTree = "<group>"; };
+		182646992AF49F4700708AEE /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = flutter/Debug/App.xcframework; sourceTree = "<group>"; };
+		1826469A2AF49F4700708AEE /* flutter_boost.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = flutter_boost.xcframework; path = flutter/Debug/flutter_boost.xcframework; sourceTree = "<group>"; };
+		1826469B2AF49F4700708AEE /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = flutter/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
+		1826469F2AF4A04100708AEE /* FlutterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlutterDelegate.swift; path = ../../FlutterLibPodDemo/FlutterLibPodDemo/FlutterDelegate.swift; sourceTree = "<group>"; };
 		18E596EB2AE2291500978164 /* flutter-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flutter-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E596EE2AE2291500978164 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18E596F22AE2291500978164 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +84,9 @@
 		18E596E22AE2291500978164 = {
 			isa = PBXGroup;
 			children = (
+				182646992AF49F4700708AEE /* App.xcframework */,
+				1826469A2AF49F4700708AEE /* flutter_boost.xcframework */,
+				1826469B2AF49F4700708AEE /* FlutterPluginRegistrant.xcframework */,
 				18E596ED2AE2291500978164 /* flutter-demo */,
 				18E597132AE2789700978164 /* flutter-demo */,
 				18E596EC2AE2291500978164 /* Products */,
@@ -92,6 +106,7 @@
 		18E596ED2AE2291500978164 /* flutter-demo */ = {
 			isa = PBXGroup;
 			children = (
+				1826469F2AF4A04100708AEE /* FlutterDelegate.swift */,
 				18E596EE2AE2291500978164 /* AppDelegate.swift */,
 				18E596F22AE2291500978164 /* ViewController.swift */,
 				18E596F42AE2291500978164 /* Main.storyboard */,
@@ -275,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182646A02AF4A04100708AEE /* FlutterDelegate.swift in Sources */,
 				18E597242AE2789700978164 /* AppDelegate.swift in Sources */,
 				18E5971E2AE2789700978164 /* ViewController.swift in Sources */,
 				18E596F32AE2291500978164 /* ViewController.swift in Sources */,

@@ -1,0 +1,4 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/App.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/Flutter.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/FlutterPluginRegistrant.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/flutter_boost.framework

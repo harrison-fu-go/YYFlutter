@@ -13,7 +13,7 @@ target 'FlutterLibPodDemo' do
   if $enable_flutterDebug #debug本地调试
     install_all_flutter_pods(flutter_application_path)
   else #framework 导入的方式
-    pod 'FLUTTER_LIB', :path => '../DemoLib'
+    pod 'DemoLib', :path => '../DemoLib'
   end
 end
 

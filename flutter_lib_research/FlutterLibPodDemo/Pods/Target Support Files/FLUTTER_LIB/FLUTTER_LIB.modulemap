@@ -1,6 +1,0 @@
-framework module FLUTTER_LIB {
-  umbrella header "FLUTTER_LIB-umbrella.h"
-
-  export *
-  module * { export * }
-}

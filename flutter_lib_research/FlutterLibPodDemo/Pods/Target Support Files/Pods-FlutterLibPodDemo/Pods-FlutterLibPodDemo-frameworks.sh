@@ -176,14 +176,16 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/FLUTTER_LIB/FLUTTER_LIB.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/App.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/Flutter.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DemoLib/DemoLib.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/App.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/Flutter.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/flutter_boost.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/FLUTTER_LIB/FLUTTER_LIB.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/App.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/FLUTTER_LIB/Flutter.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DemoLib/DemoLib.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/App.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/Flutter.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib/flutter_boost.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

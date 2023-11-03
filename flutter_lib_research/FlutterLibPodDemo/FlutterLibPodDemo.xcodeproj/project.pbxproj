@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		182646712AF0ACDE00708AEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1826466F2AF0ACDE00708AEE /* Main.storyboard */; };
 		182646732AF0ACDF00708AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182646722AF0ACDF00708AEE /* Assets.xcassets */; };
 		182646762AF0ACDF00708AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182646742AF0ACDF00708AEE /* LaunchScreen.storyboard */; };
+		182646912AF243AC00708AEE /* FlutterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182646902AF243AC00708AEE /* FlutterDelegate.swift */; };
 		B6DD2BA784E53CEEF3A8B29F /* Pods_FlutterLibPodDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AE2C18DD803BB156D8CEF2 /* Pods_FlutterLibPodDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		182646722AF0ACDF00708AEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182646752AF0ACDF00708AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182646772AF0ACDF00708AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		182646902AF243AC00708AEE /* FlutterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterDelegate.swift; sourceTree = "<group>"; };
 		26A9D1F70F0A573555BA2564 /* Pods-FlutterLibPodDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterLibPodDemo.release.xcconfig"; path = "Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9CE0B734B28F504C97E31D25 /* Pods-FlutterLibPodDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterLibPodDemo.debug.xcconfig"; path = "Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A1AE2C18DD803BB156D8CEF2 /* Pods_FlutterLibPodDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlutterLibPodDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				182646692AF0ACDE00708AEE /* AppDelegate.swift */,
+				182646902AF243AC00708AEE /* FlutterDelegate.swift */,
 				1826466B2AF0ACDE00708AEE /* SceneDelegate.swift */,
 				1826466D2AF0ACDE00708AEE /* ViewController.swift */,
 				1826466F2AF0ACDE00708AEE /* Main.storyboard */,
@@ -102,7 +105,6 @@
 				182646622AF0ACDE00708AEE /* Sources */,
 				182646632AF0ACDE00708AEE /* Frameworks */,
 				182646642AF0ACDE00708AEE /* Resources */,
-				1826468E2AF1095500708AEE /* Embed Flutter Build community Script */,
 				CABE77A110134B34CF11CB71 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -130,7 +132,7 @@
 				};
 			};
 			buildConfigurationList = 182646612AF0ACDE00708AEE /* Build configuration list for PBXProject "FlutterLibPodDemo" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -161,24 +163,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1826468E2AF1095500708AEE /* Embed Flutter Build community Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Flutter Build community Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nset -e\nset -u\nsource \"${SRCROOT}/../flutter_lib/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh embed_and_thin\n";
-		};
 		7EA06AC954D11E97D27F7AFA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1826466E2AF0ACDE00708AEE /* ViewController.swift in Sources */,
+				182646912AF243AC00708AEE /* FlutterDelegate.swift in Sources */,
 				1826466A2AF0ACDE00708AEE /* AppDelegate.swift in Sources */,
 				1826466C2AF0ACDE00708AEE /* SceneDelegate.swift in Sources */,
 			);
@@ -303,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -357,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -376,8 +361,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X4FCHGB38;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DemoLib\"",
+					"\"${PODS_ROOT}/../../DemoLib/frameworks\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlutterLibPodDemo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow to access the network";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -405,8 +398,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X4FCHGB38;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DemoLib\"",
+					"\"${PODS_ROOT}/../../DemoLib/frameworks\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/DemoLib\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlutterLibPodDemo/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Allow to access the network";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

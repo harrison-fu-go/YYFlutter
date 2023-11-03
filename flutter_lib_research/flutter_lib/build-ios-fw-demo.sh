@@ -48,11 +48,16 @@ echo "=====移除旧的flutterLib成功====="
 mkdir $libpath
 
 echo "=============== 构建FLUTTER_IOS_FRAMEWORK ==============="
-if [ $number == 0 ];then
-  flutter build ios-framework --release --no-debug --no-profile --output=$libpath
-else
-  flutter build ios-framework --output=$libpath
-fi
+flutter build ios-framework
+#cp -r build/ios/framework/Release/*.xcframework $libpath
+cp -r build/ios/framework/Debug/*.xcframework $libpath
+echo "=============== 复制完成 ==============="
+#flutter build ios-framework --debug --no-release --no-profile --output=$libpath
+#if [ $number == 0 ];then
+#  flutter build ios-framework --release --no-debug --no-profile --output=$libpath
+#else
+#  flutter build ios-framework --output=$libpath
+#fi
 
 echo "=============== 移除编译产物 ==============="
 find . -d -name build | xargs rm -rf

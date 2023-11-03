@@ -42,7 +42,7 @@ echo "=============== 更新依赖 ==============="
 flutter packages get
 echo "=============== 依赖更新完毕 ==============="
 
-libpath='../FlutterCocopodsDemo/flutter'
+libpath='../flutter-demo1/flutter'
 rm -rf "$libpath"
 echo "=====移除旧的flutterLib成功====="
 mkdir $libpath
@@ -52,6 +52,7 @@ echo "=============== 构建FLUTTER_IOS_FRAMEWORK ==============="
 flutter build ios-framework --debug --cocoapods --output=$libpath
 
 echo "=============== 移除编译产物 ==============="
+
 find . -d -name build | xargs rm -rf
 rm -rf build
 echo "=============== 移除完成 ==============="
