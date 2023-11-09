@@ -70,7 +70,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
 import 'package:flutter_lib/pages/willpop.dart';
@@ -80,9 +79,7 @@ void main() {
   runApp(const MyApp());
 }
 
-class CustomFlutterBinding extends WidgetsFlutterBinding
-    with BoostFlutterBinding {}
-
+class CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -95,9 +92,13 @@ class _MyAppState extends State<MyApp> {
   // 配置路由
   static Map<String, FlutterBoostRouteFactory> routerMap = {
     'flutterPage': (settings, uniqueId) {
+      return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => const WillPopRoute());
+    },
+    '/': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(
-          settings: settings, pageBuilder: (_, __, ___) => const WillPopRoute());
-    }
+          settings: settings, pageBuilder: (_, __, ___)
+      => Container(child: const Text("Hellllo wwwwworld."),));
+    },
   };
 
   Route<dynamic>? routeFactory(RouteSettings settings, String? uniqueId) {
@@ -112,9 +113,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return FlutterBoostApp(routeFactory);
   }
-
 }

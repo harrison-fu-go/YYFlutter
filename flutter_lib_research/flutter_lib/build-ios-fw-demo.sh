@@ -2,6 +2,7 @@ project_path=$(pwd)
 project_last_path=${project_path%/*}
 
 echo ""
+echo "=============== sh build-ios-fw-demo.sh==============="
 echo "=============== 构建开始 ==============="
 
 clean_tips="执行flutter clean(默认:n) [ y/n ]"
@@ -52,7 +53,8 @@ flutter build ios-framework
 #cp -r build/ios/framework/Release/*.xcframework $libpath
 cp -r build/ios/framework/Debug/*.xcframework $libpath
 echo "=============== 复制完成 ==============="
-#flutter build ios-framework --debug --no-release --no-profile --output=$libpath
+
+
 #if [ $number == 0 ];then
 #  flutter build ios-framework --release --no-debug --no-profile --output=$libpath
 #else
@@ -63,4 +65,7 @@ echo "=============== 移除编译产物 ==============="
 find . -d -name build | xargs rm -rf
 rm -rf build
 echo "=============== 移除完成 ==============="
+
+
+
 exit 0

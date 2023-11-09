@@ -7,10 +7,10 @@
 import UIKit
 import Flutter
 import flutter_boost
-import FlutterPluginRegistrant
+//import FlutterPluginRegistrant
  
  
-class MyBoostAppDelegate: NSObject,FlutterBoostDelegate {
+class MyBoostAppDelegate: NSObject, FlutterBoostDelegate {
     
     static let shared = MyBoostAppDelegate()
  
@@ -21,7 +21,7 @@ class MyBoostAppDelegate: NSObject,FlutterBoostDelegate {
     var resultTable:Dictionary<String,([AnyHashable:Any]?)->Void> = [:];
  
     func pushNativeRoute(_ pageName: String!, arguments: [AnyHashable : Any]!) {
- 
+        
         //可以用参数来控制是push还是pop
         let isPresent = arguments["isPresent"] as? Bool ?? false
         let isAnimated = arguments["isAnimated"] as? Bool ?? true
@@ -38,7 +38,6 @@ class MyBoostAppDelegate: NSObject,FlutterBoostDelegate {
     func pushFlutterRoute(_ options: FlutterBoostRouteOptions!) {
         let vc:FBFlutterViewContainer = FBFlutterViewContainer()
         vc.setName(options.pageName, uniqueId: options.uniqueId, params: options.arguments,opaque: options.opaque)
- 
         //用参数来控制是push还是pop
         let isPresent = (options.arguments?["isPresent"] as? Bool)  ?? false
         let isAnimated = (options.arguments?["isAnimated"] as? Bool) ?? true

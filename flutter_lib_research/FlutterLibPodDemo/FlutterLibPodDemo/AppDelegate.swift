@@ -10,7 +10,12 @@ import flutter_boost
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-//        //创建代理，做初始化操作
+
+        let delegate = MyBoostAppDelegate.shared
+        FlutterBoost.instance().setup(UIApplication.shared, delegate: delegate) { engine in
+            debugPrint("=========== egine: \(String(describing: engine?.platformChannel))")
+        }
+            
         return true
     }
 

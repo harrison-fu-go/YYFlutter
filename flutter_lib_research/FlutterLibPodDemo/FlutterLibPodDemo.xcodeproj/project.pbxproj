@@ -14,6 +14,7 @@
 		182646732AF0ACDF00708AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182646722AF0ACDF00708AEE /* Assets.xcassets */; };
 		182646762AF0ACDF00708AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182646742AF0ACDF00708AEE /* LaunchScreen.storyboard */; };
 		182646912AF243AC00708AEE /* FlutterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182646902AF243AC00708AEE /* FlutterDelegate.swift */; };
+		182646AB2AFB819400708AEE /* flutter_assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182646AA2AFB819400708AEE /* flutter_assets.xcassets */; };
 		B6DD2BA784E53CEEF3A8B29F /* Pods_FlutterLibPodDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1AE2C18DD803BB156D8CEF2 /* Pods_FlutterLibPodDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		182646752AF0ACDF00708AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		182646772AF0ACDF00708AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		182646902AF243AC00708AEE /* FlutterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterDelegate.swift; sourceTree = "<group>"; };
+		182646AA2AFB819400708AEE /* flutter_assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = flutter_assets.xcassets; sourceTree = "<group>"; };
 		26A9D1F70F0A573555BA2564 /* Pods-FlutterLibPodDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterLibPodDemo.release.xcconfig"; path = "Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9CE0B734B28F504C97E31D25 /* Pods-FlutterLibPodDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterLibPodDemo.debug.xcconfig"; path = "Target Support Files/Pods-FlutterLibPodDemo/Pods-FlutterLibPodDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A1AE2C18DD803BB156D8CEF2 /* Pods_FlutterLibPodDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlutterLibPodDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +72,7 @@
 				1826466B2AF0ACDE00708AEE /* SceneDelegate.swift */,
 				1826466D2AF0ACDE00708AEE /* ViewController.swift */,
 				1826466F2AF0ACDE00708AEE /* Main.storyboard */,
+				182646AA2AFB819400708AEE /* flutter_assets.xcassets */,
 				182646722AF0ACDF00708AEE /* Assets.xcassets */,
 				182646742AF0ACDF00708AEE /* LaunchScreen.storyboard */,
 				182646772AF0ACDF00708AEE /* Info.plist */,
@@ -128,6 +131,7 @@
 				TargetAttributes = {
 					182646652AF0ACDE00708AEE = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -157,6 +161,7 @@
 				182646762AF0ACDF00708AEE /* LaunchScreen.storyboard in Resources */,
 				182646732AF0ACDF00708AEE /* Assets.xcassets in Resources */,
 				182646712AF0ACDE00708AEE /* Main.storyboard in Resources */,
+				182646AB2AFB819400708AEE /* flutter_assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +363,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X4FCHGB38;
@@ -384,6 +390,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nothing.FlutterLibPodDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -395,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X4FCHGB38;
@@ -421,6 +430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nothing.FlutterLibPodDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

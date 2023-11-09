@@ -31,7 +31,7 @@ dependencies:
   flutter_boost:
       git:
         url: 'https://github.com/alibaba/flutter_boost.git'
-        ref: '4.4.0'
+        ref: '4.4.0' #6a75620d7dd79406f59af998237dd3e949062253
 
 dev_dependencies:
   flutter_test:
@@ -88,5 +88,6 @@ flutter:
   # identifiers, which may be completely independent or the same as these.
   module:
     androidX: true
-    androidPackage: com.example.flutter_lib
-    iosBundleIdentifier: com.example.flutterLib
+    androidPackage: com.nothing.FlutterLibPodDemo
+    iosBundleIdentifier: com.nothing.FlutterLibPodDemo
+#    com.example.flutterLib

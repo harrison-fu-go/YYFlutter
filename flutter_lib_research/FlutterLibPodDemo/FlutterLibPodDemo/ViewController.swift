@@ -10,11 +10,9 @@ import Flutter
 import flutter_boost
 
 class ViewController: UIViewController {
-    let delegate = MyBoostAppDelegate.shared
-    lazy var flutterEngine = FlutterEngine(name: "my flutter engine")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        flutterEngine.run()
         // Do any additional setup after loading the view.
         let button = UIButton(type:UIButton.ButtonType.custom)
         button.addTarget(self, action: #selector(showFlutter), for: .touchUpInside)
@@ -30,24 +28,28 @@ class ViewController: UIViewController {
         flutterBoost.frame = CGRect(x: 80.0, y: 310.0, width: 160.0, height: 40.0)
         flutterBoost.backgroundColor = UIColor.blue
         self.view.addSubview(flutterBoost)
-        
-        
-        FlutterBoost.instance().setup(UIApplication.shared, delegate: delegate) { engine in
-            debugPrint("=========== what is you? : \(engine?.platformChannel)")
-        }
     }
     
     @objc func showFlutter() {
-        let flutterEngine = self.flutterEngine
+        var flutterEngine = FlutterEngine(name: "my flutter engine")
+        flutterEngine.run()
         let flutterVC = FlutterViewController(engine: flutterEngine, nibName: nil, bundle: nil)
         self.present(flutterVC, animated: true)
     }
     
 //    //Flutter boost.
     @objc func clickButton(_ sender: Any) {
+        debugPrint("===== On click: flutter boost. ")
         MyBoostAppDelegate.shared.navigationController = self.navigationController
         let options = FlutterBoostRouteOptions()
         options.pageName = "flutterPage"
+        options.onPageFinished = { info in
+            debugPrint("=======1: \(info)")
+        }
+        options.completion = {val in
+            debugPrint("=======2: \(val)")
+        }
+//        FlutterBoost.instance().open(options)
         FlutterBoost.instance().open(options)
     }
 }
