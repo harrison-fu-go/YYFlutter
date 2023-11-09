@@ -1,0 +1,8 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'PROJECT_Example' do
+  pod 'FLUTTER_LIB', :path => '../../../'
+
+end
