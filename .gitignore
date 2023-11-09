@@ -50,3 +50,5 @@ app.*.symbols
 app.*.map.json
 Pods/
 Podfile.lock
+*.xcframework
+*.framework
