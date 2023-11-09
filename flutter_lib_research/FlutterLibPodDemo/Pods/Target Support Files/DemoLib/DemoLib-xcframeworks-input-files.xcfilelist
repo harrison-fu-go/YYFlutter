@@ -1,5 +1,0 @@
-${PODS_ROOT}/Target Support Files/DemoLib/DemoLib-xcframeworks.sh
-${PODS_ROOT}/../../DemoLib/frameworks/App.xcframework
-${PODS_ROOT}/../../DemoLib/frameworks/Flutter.xcframework
-${PODS_ROOT}/../../DemoLib/frameworks/FlutterPluginRegistrant.xcframework
-${PODS_ROOT}/../../DemoLib/frameworks/flutter_boost.xcframework
