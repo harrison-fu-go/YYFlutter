@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import native_demo
+//import native_demo
+import FlutterPluginRegistrant
 import Flutter
 
 class ViewController: UIViewController {
@@ -19,7 +20,6 @@ class ViewController: UIViewController {
 
     @IBAction func showFlutter1(_ sender: Any) {
         let vc = FlutterBaseVC(entryPoint: "baseMain1", param: "1")
-        NativeDemoPlugin.initMethodChannel(channel: "samples.flutter.dev/battery", vc: vc)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
