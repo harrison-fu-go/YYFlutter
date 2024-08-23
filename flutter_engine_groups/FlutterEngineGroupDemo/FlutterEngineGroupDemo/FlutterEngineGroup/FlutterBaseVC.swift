@@ -21,19 +21,19 @@ open class FlutterBaseVC: FlutterViewController {
     }
     
     public init(entryPoint: String?, param: String? = nil) {
-        let engine = EngineGroupMgr.share.createEngineAndChannel(entryPoint: entryPoint, channel: kBaseNavigateParam)
+        let engine = EngineGroupMgr.share.createEngineAndChannel(entryPoint: entryPoint, channel: nil)
         self.channel = engine.c
         super.init(engine: engine.e, nibName: nil, bundle: nil)
-        self.channel?.setMessageHandler {[weak self] message, reply in
-            guard let self = self else { return }
-            if let param = param, let message = message as? String, message == kBaseNavigateInitParam, !self.isSetParamToFlutter {
-                reply([kBaseNavigateChannelIdentifier: self.identifier, kBaseNavigateInitParam:param])
-                self.isSetParamToFlutter = true
-                return
-            }
-            self.isSetParamToFlutter = true
-            self.onMessageUpdate(message: message)
-        }
+//        self.channel?.setMessageHandler {[weak self] message, reply in
+//            guard let self = self else { return }
+//            if let param = param, let message = message as? String, message == kBaseNavigateInitParam, !self.isSetParamToFlutter {
+//                reply([kBaseNavigateChannelIdentifier: self.identifier, kBaseNavigateInitParam:param])
+//                self.isSetParamToFlutter = true
+//                return
+//            }
+//            self.isSetParamToFlutter = true
+//            self.onMessageUpdate(message: message)
+//        }
     }
     
     open override func viewDidLoad() {
