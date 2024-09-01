@@ -1,9 +1,9 @@
 part of 'second_cubit.dart';
 
 @immutable
-abstract class SecondState {}
+// abstract class SecondState {}
 
-class SecondInitial extends SecondState {
+class SecondInitial { //extends SecondState {
   int age;
 
   String name;
