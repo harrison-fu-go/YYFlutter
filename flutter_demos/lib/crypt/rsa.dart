@@ -1,0 +1,27 @@
+
+import 'package:encrypt/encrypt.dart';
+import 'package:pointycastle/export.dart';
+
+String kPublicKey = """
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA38MBBn9gvOC1mtY/qCXck95aRXHfZp56tEhI4VZdQMhSxeIKnCTOjdfzPSeZAlV9OOla6OT1Dw1tN5svBJhEKLjbDGyzHtSGDRFXpTeuG8Su8NYuh9WZXYFX/XYbJplxKzDvj327C4jLG/yErq3hMZzdxuQKdKqJ7WQ75OiIi8rsfEzLDP4odm1NF4T59d1/4HF93veDardXnUEi6NHNsZQChMopBzUQIKbbV2zJeyGcgZJV9FV307eSPXS4Hm7J1MkOGrWJkX/7aebfuYXace0AvjwfZIcEQ+8+nRMO4ZA8oskt6wpjuZBuc3HZPu7HuqhxEl6xnLxWA5ZqwikIoQIDAQAB
+-----END PUBLIC KEY-----
+""";
+
+String kPrivateKey = """
+-----BEGIN PRIVATE KEY-----
+MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDfwwEGf2C84LWa1j+oJdyT3lpFcd9mnnq0SEjhVl1AyFLF4gqcJM6N1/M9J5kCVX046Vro5PUPDW03my8EmEQouNsMbLMe1IYNEVelN64bxK7w1i6H1ZldgVf9dhsmmXErMO+PfbsLiMsb/ISureExnN3G5Ap0qontZDvk6IiLyux8TMsM/ih2bU0XhPn13X/gcX3e94Nqt1edQSLo0c2xlAKEyikHNRAgpttXbMl7IZyBklX0VXfTt5I9dLgebsnUyQ4atYmRf/tp5t+5hdpx7QC+PB9khwRD7z6dEw7hkDyiyS3rCmO5kG5zcdk+7se6qHESXrGcvFYDlmrCKQihAgMBAAECggEAIXW/iYEyrgvMHEM9cZ93xITTat8EUQwRvTOx8kA/4ZgTCJQskfzPBlbsgJCTSM4P05rRhVH3czDGzDHgbgd26b/6wXjfsBSHlxyoxoP0/SIEJu9gNd+y91CIH9axaKw5SAQhTou2lJr4BE9WZ+iIbCrQ3xTqm1eFGIKMkkZTZNPDuS7rwBs39scKLNEEKbk2ne3xXS8BTNEN6pJNuGeVHCQPfsxLMPWxBViaaVpyBBK4wJQ9fQoGFwuzMyyWuYGqjSJAXCAOUVw1XJbusIQFxrGLmgdxvllKrpw+4oGJXt2R/sxQOtE6zX/9oLyAReGdteWRm8wn+QEv0Sl9t4UZgQKBgQD4BoN5LVztrAp1A2v8l2azL1/QbuQny2d4FPQGDEaT1kEp3skxqLfCq4S2dDaZL0vQbby42NNkd3s8k9vr/pg78grnvUdKWmdhFkJ/tSOMFIRWUBf0PsnhSAxATTn+HjDyFIoF4F2aV+xaZXVx8p4TKGgVyorv/SjozwQV/1eDxQKBgQDm9MbkZMbYGZ2K3UL4EqxKGhERqpSMAXiNhIiqD5r24tD5l7G2B71oVil29yWXXKOEGi6wgla8MBgfW3GrJ8Tk2kIU2mO78GUfbQaCg19szhELGCvNX4v/4L9SxbOOjvIucDKkncIqLBG1/qzBg9q/PfJri5hOwjx4OEyPqrZTLQKBgQDtR/37rgRbdN3EOHPVAVtFTatSkuQ/lf71CMa0CoZy5OUOk47TrV+wI7shemjJgE/9pR6JkRYb5ZrGx4X8bmNh5hu8vH45ieehIFSaLMdHOlGo6ZMhHfixR+ZAliFHFccpsbCiEpY6FKePi8UiMEQ+e8eoIU9ubTn4ECUOjmxBKQKBgQC9J1658hu1I42XDM5rdIetDRpLuMR+wjmk1hZEChHmADAdK3M93arwCBlfuN0N0a6OZA83OxikelNXY0J+ZkzpDiSvBYpHg4Ser2F0hPojl8X3qy08v/NedwjbVtZPfJ23EOc5UYeTmJJM1y9QMph2ptqj4Cm233g9EgcKZ0t6ZQKBgQCGAWorc3eu03BKkv3y8QCNJSLxrZ3d2mKWb21+11fFJit/K1VSd/lNTLo/Ju12KZBOrmtTStNGq/qHrdz9KVJCb7DI7yftNh2t2Vh8SdwQ5c7mCspaWegHBsopblD2c6ZzCZM7Y264NAfneAHfiMmtyyYPKoUPf/hGa1HYYpf+qQ==
+-----END PRIVATE KEY-----
+""";
+
+String rsaEncrypt(String input) {
+  final publicKey = RSAKeyParser().parse(kPublicKey) as RSAPublicKey;
+  final rsa = Encrypter(RSA(publicKey: publicKey));
+  return rsa.encrypt(input).base64;
+}
+
+String rsaDecrypt(String input) {
+  RSAPrivateKey? privateKey0  = RSAKeyParser().parse(kPrivateKey) as RSAPrivateKey;
+  final rsa = Encrypter(RSA(privateKey: privateKey0));
+  return rsa.decrypt64(input);
+}
