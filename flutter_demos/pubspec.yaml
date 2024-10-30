@@ -43,6 +43,8 @@ dependencies:
   path_provider: ^2.0.11  # 用于获取文件存储路径
   crc: ^0.0.2 # 或者最新版本
   crypto: ^3.0.0
+  flutter_flavorizr: ^2.2.3 #设置多平台
+  flutter_launcher_icons: "^0.14.1" #设置app icons.
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +72,9 @@ flutter:
   assets:
   - assets/lang/en.json
   - assets/lang/zh.json
+  - assets/images/
+  - assets/images/dev_splash.png
+  - assets/images/prod_splash.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -100,3 +105,24 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+#flutter pub run flutter_flavorizr
+flavorizr:
+  flavors:
+    development:
+      app:
+        name: "FlutterDebug"
+
+      android:
+        applicationId: "com.harrison.flutterDemos.dev"
+      ios:
+        bundleId: "com.harrison.flutterDemos.dev"
+    production:
+      app:
+        name: "FlutterProd"
+
+      android:
+        applicationId: "com.harrison.flutterDemos"
+      ios:
+        bundleId: "com.harrison.flutterDemos"
+
