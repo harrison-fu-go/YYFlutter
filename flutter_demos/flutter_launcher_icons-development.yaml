@@ -1,5 +1,12 @@
+#  // 生成每個環境
+#    flutter pub run flutter_launcher_icons -f flutter_launcher_icons*
+#
+#    // 生成指定環境
+#    flutter pub run flutter_launcher_icons -f flutter_launcher_icons-dev.yaml
 flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/icon_ios.png"
+  image_path: "assets/images/icon-dev.png"
+  adaptive_icon_background: "assets/images/icon-dev.png" # 图标背景
+  adaptive_icon_foreground: "assets/images/icon-dev.png"

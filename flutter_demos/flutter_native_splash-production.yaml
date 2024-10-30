@@ -1,0 +1,18 @@
+#run: dart run flutter_native_splash:create --flavors development,production
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/splash_prod.png
+  branding: assets/images/splash_prod.png
+  branding_bottom_padding: 24
+  color_dark: "#121212"
+  image_dark: assets/images/splash_prod.png
+  branding_dark: assets/images/splash_prod.png
+
+  android_12:
+    image: assets/images/splash_prod.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/splash_prod.png
+    icon_background_color_dark: "#121212"
+
+  web: false
