@@ -49,5 +49,7 @@
 		<false/>
 		<key>UILaunchStoryboardName</key>
 		<string>$(LAUNCH_SCREEN_STORYBOARD)</string>
+        <key>NSContactsUsageDescription</key>
+        <string>We needaccess to the contact list to provide select the pin contact.</string>
 	</dict>
 </plist>

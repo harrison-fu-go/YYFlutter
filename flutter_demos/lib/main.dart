@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demos/TexsSpans/custom_text_span.dart';
+import 'package:flutter_demos/crypt/aes.dart';
+import 'package:flutter_demos/crypt/hash_utils.dart';
 import 'package:flutter_demos/crypt/rsa.dart';
 import 'package:flutter_demos/crypt/sha_256.dart';
 import 'package:flutter_demos/date_time/YYDateTime.dart';
 import 'package:flutter_demos/dio/dio_request.dart';
 import 'package:flutter_demos/dio/download/download_service.dart';
-import 'package:flutter_demos/language_area/language_region.dart';
+import 'package:flutter_demos/pages/home_test.dart';
+import 'package:flutter_demos/pages/home_test1.dart';
 import 'package:flutter_demos/system_info/app_info.dart';
 import 'package:flutter_demos/system_info/device_info.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'TexsSpans/cus_text_icon_span.dart';
+import 'contacts/contact_picker.dart';
 import 'getX/get_x_controller.dart';
 import 'getX/get_x_second_page.dart';
 import 'languages/languages.dart';
 import 'package:test/test.dart';
+
 void main() {
   /**
    * 测试rsa
@@ -31,6 +37,19 @@ void main() {
   print(
       "==== now: $now ==== begin: $begin === day: ${date.year}-${date.month}-${date.day} ${date.hour}:${date.minute}:${date.second}");
   Calculator.test();
+
+  String aesKey = 'fImgTfZl9pCzJbLZ'; //abcdefgh12345678
+  String aesIv = 'YZAcjv1yOnlhjHbd';
+  String aesData = 'qq123456';
+  //String aesResult = encryptCBC(aesData, aesKey, aesIv, padding: 'PKCS7');
+  String aesResult = aesEncryptCBC(aesKey, aesIv, aesData);
+  // vyZHjemWytlJAq0X/KKa0w==
+  String baseData = aesDecryptCBC(aesKey, aesIv, 'beYdftvAq5gtc0pmQQ7plA==');
+  print('===== aes result: $aesResult ====== $baseData');
+
+  String md5result = iMd5('123456');
+  print('===== md5result: $md5result');
+  // WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -38,6 +57,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
+    double safeBottomH = MediaQuery.of(context).padding.bottom;
+    print('===== $safeBottomH');
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -59,165 +80,73 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
             name: '/',
-            page: () => MyHomePage(
-                  title: 'message'.localized,
-                )),
+            page: () => HomePage()),
         GetPage(name: '/second', page: () => SecondPage()),
       ],
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  // 创建控制器的实例
-  final CounterController counterControl = Get.put(CounterController());
-  void _incrementCounter() {
-    counterControl.increment(); // 调用控制器的方法
-  }
-
-  double downloadProgress = 0.0;
-  bool downloadFinished = false;
-
-  @override
-  void initState() {
-    super.initState();
-    DioRequest.setUp();
-  }
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0; // 当前选中的索引
+  final PageController _pageController = PageController(); // 控制PageView
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+      //appBar: AppBar(title: Text("BottomNavigationBar 切换页面")),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        children: [
+          const MyHomePage(title: 'My test page',),
+          const HomePage2(),
+          // Center(child: Text("个人中心")),
+          ContactPickerPage()
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              // 使用 Obx 监听状态变化并更新 UI
-              child: Obx(() => Text(
-                    'Clicked ${counterControl.count} times',
-                    style: const TextStyle(fontSize: 30),
-                  )),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Get.toNamed('/second'); // 导航到第二个页面
-              },
-              child: Text('Go to Second Page'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                String ostype = await XsDeviceInfo.shared.osType;
-                String osVersion = await XsDeviceInfo.shared.osVersion;
-                String buildNumber = await XsAppInfo.shared.appVersioncode;
-                String appVersion = await XsAppInfo.shared.appVersionName;
-                print('==========device info: ${(ostype, osVersion)}');
-                print('==========device info: ${(buildNumber, appVersion)}');
-              },
-              child: Text('打印设备相关信息'),
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                String sha256_1 = hmac(map: {
-                  'a': [
-                    2,
-                    3,
-                    4,
-                    5,
-                    {'a': 1, 'b': 2, 'a1': 3}
-                  ],
-                  'aa': 124,
-                  'bb': {'key0': 34, 'key1': 45, 'aa': 66},
-                  'ab': 'addd,fdhsfjdslfjskljfslfjdslfks,lfjsk'
-                }, hmacKey: '234');
-                String sha256_2 = hmac(map: {
-                  'ab': 'addd,fdhsfjdslfjskljfslfjdslfks,lfjsk',
-                  'aa': 124,
-                  'a': [
-                    2,
-                    3,
-                    4,
-                    5,
-                    {'a': 1, 'b': 2, 'a1': 3}
-                  ],
-                  'bb': {'aa': 66, 'key0': 34, 'key1': 45},
-                }, hmacKey: '234');
-                print('========计算sha256结果 $sha256_1  ==== $sha256_2');
-              },
-              child: const Text('计算sha-256'),
-            ),
-            const SizedBox(
-              height: 32,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // DioRequest.request();
-                DownloadService.to.downloadFile(
-                    url: 'http://192.168.1.200/stage-api/file/download?key=02a74e23b7ee4438955c0ee2dbd3267c',
-                    filename: 'test.temp',
-                    checkSum: 3181562676,
-                    progressHandle: (progress) {
-                      setState(() {
-                        downloadProgress = progress;
-                      });
-                    },
-                    completionHandle: (success, mess) {
-                      print('下载文件completion: $success, --> mess: $mess');
-                    });
-              },
-              child: Text('  开始下载 -> $downloadProgress'),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // DioRequest.request();
-                DownloadService.to.pauseDownload();
-              },
-              child: const Text('停止下载'),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // DioRequest.request();
-                DownloadService.to.removeFile('test.temp');
-              },
-              child: const Text('清除下载文件'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // DioRequest.request();
-                DownloadService.to.calculateCheckSum(filename: 'test.temp');
-              },
-              child: const Text('计算checkSum'),
-            ),
-            const XsCusTextSpan(textInfos: [
-              ('dsfsfsfsfs', TextStyle(fontSize: 20), link: null),
-              ('dsfsfsfsfsdddd', null, link: null),
-            ], defaultHighlightStyle: TextStyle(fontSize: 20),),
-          ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white, // BottomNavigationBar 背景色
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
+          child: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            backgroundColor: Colors.white,
+            onTap: (int index) {
+              setState(() {
+                _currentIndex = index;
+              });
+              // 点击BottomNavigationBar时跳转到对应的PageView页面
+              _pageController.jumpToPage(index);
+            },
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
+              BottomNavigationBarItem(icon: Icon(Icons.search), label: "搜索"),
+              // BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的"),
+              BottomNavigationBarItem(icon: Icon(Icons.contacts), label: "联系人"),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -262,6 +262,7 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				B96231A2BB5E9F47F3852B2D /* [CP] Embed Pods Frameworks */,
+				96DBEC72785FB89C0D538D03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,6 +384,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+		};
+		96DBEC72785FB89C0D538D03 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -558,7 +576,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CBE49DFCDEAD86460522FC3D /* Pods-Runner.debug-production.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-production;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-production";
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProduction;
 				PRODUCT_NAME = Runner;
 			};
@@ -568,7 +586,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1266BA1DF74D8FEE11479D3A /* Pods-Runner.profile-production.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-production;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-production";
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProduction;
 				PRODUCT_NAME = Runner;
 			};
@@ -578,7 +596,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E4C33C167F235409228A640 /* Pods-Runner.release-production.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-production;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-production";
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenProduction;
 				PRODUCT_NAME = Runner;
 			};

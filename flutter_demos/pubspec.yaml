@@ -46,6 +46,9 @@ dependencies:
   flutter_flavorizr: ^2.2.3 #设置多平台
   flutter_launcher_icons: "^0.14.1" #设置app icons.
   flutter_native_splash: ^2.4.2
+  flutter_contacts: 1.1.5
+  permission_handler: 11.3.1
+  flutter_native_contact_picker: 0.0.7
 
 dev_dependencies:
   flutter_test:
