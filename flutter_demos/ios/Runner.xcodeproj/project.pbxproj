@@ -547,6 +547,7 @@
 			baseConfigurationReference = BFC6841A906E929D77EABD7B /* Pods-Runner.debug-development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-development";
+				DEVELOPMENT_TEAM = U3N22Y2GA8;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDevelopment;
 				PRODUCT_NAME = Runner;
 			};
@@ -557,6 +558,7 @@
 			baseConfigurationReference = 8EFD87A3CE518C74574528EF /* Pods-Runner.profile-development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-development";
+				DEVELOPMENT_TEAM = U3N22Y2GA8;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDevelopment;
 				PRODUCT_NAME = Runner;
 			};
@@ -567,6 +569,7 @@
 			baseConfigurationReference = D6CA7399D02A9658CB90B600 /* Pods-Runner.release-development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-development";
+				DEVELOPMENT_TEAM = U3N22Y2GA8;
 				LAUNCH_SCREEN_STORYBOARD = LaunchScreenDevelopment;
 				PRODUCT_NAME = Runner;
 			};

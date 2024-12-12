@@ -42,16 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
     DioRequest.setUp();
 
 
-    try {
-      List<int> numbers = [1, 2, 3];
-      print(numbers[5]); // 访问不存在的索引
-    } catch (e) {
-      print("捕获到错误: $e");
-      if (e is RangeError) {
-        print("这是一个数组越界错误！");
-      }
-    }
-
     // String original = "即风刀霜dddddabcdefg";
     // String limited = limitToByteLen(original, 3);
     // print("Original: $original");
@@ -63,6 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //   String decodeList = utf8.encode(original).toStrByRange(start: 0, end: index);
     //   print('result: ==== $decodeList');
     // }
+
+    List<int> datas = [2, 9, 230, 136, 145, 230, 136, 145, 230, 136, 145, 9, 228, 189, 160, 228, 189, 160, 228, 189, 160, 0, 1, 15, 99, 111, 109, 46, 97, 110, 100, 114, 111, 105, 100, 46, 109, 109, 115, 1, 2, 3, 49, 49, 49, 2, 49, 50, 1, 6, 230, 157, 142, 229, 155, 155, 1, 3, 50, 50, 50, 1, 3, 51, 51, 51];
+    var value = datas.getAll8nStrs(start: 0);
+    print('result: ==== $value');
   }
 
   @override

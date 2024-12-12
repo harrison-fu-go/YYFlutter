@@ -50,6 +50,7 @@ void main() {
   String md5result = iMd5('123456');
   print('===== md5result: $md5result');
   // WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 

@@ -24,27 +24,34 @@ String limitToByteLen(String input, int maxBytes) {
 
 extension ExtensionListInt on List<int> {
 
+  // //include start. but not unclude end.
   String toStrByRange({required int start, required int end}) {
-    // List<int> list = validSublist(this, start, end);
     end = end.clamp(start, length);
     List<int> subList = sublist(start, end);
     subList = getCompleteUtf8Bytes(subList);
-    String result =  utf8.decode(subList, allowMalformed: true);
+    String result = utf8.decode(subList, allowMalformed: true);
     return result;
+  }
+
+  String toStrByLoc({required int loc, required int len}) {
+    return toStrByRange(start: loc, end: loc + len);
   }
 
   ///check if the  UTF-8 bytes list integrity， if not then return the integrity part.
   List<int> getCompleteUtf8Bytes(List<int> bytes) {
     int continuationBytes = 0;
-    for (int i = bytes.length - 1; i >= 0; i--) { ///from tail to header
+    for (int i = bytes.length - 1; i >= 0; i--) {
+      ///from tail to header
       int byte = bytes[i];
 
-      if ((byte & 0xC0) == 0x80) { //is body byte. (10xxxxxx)
+      if ((byte & 0xC0) == 0x80) {
+        //is body byte. (10xxxxxx)
         continuationBytes++;
       } else {
-        if (continuationBytes == 0) { //is the header
+        if (continuationBytes == 0) {
+          //is the header
           if ((byte & 0x80) == 0) {
-            return bytes;  //integrity single byte char.
+            return bytes; //integrity single byte char.
           } else {
             return bytes.sublist(0, i); //remove the error byte. then return .
           }
@@ -58,7 +65,7 @@ extension ExtensionListInt on List<int> {
         } else if ((byte & 0xF8) == 0xF0) {
           expectedBytes = 3; // 4 bytes char
         } else {
-          // 非法起始字节
+          //error start
           throw FormatException("Invalid UTF-8 start byte: $byte");
         }
 
@@ -73,6 +80,43 @@ extension ExtensionListInt on List<int> {
     }
     //unknown chars bytes.
     return Uint8List(0);
+  }
+
+  //the totoal count , means dataLen + 1(start --> the count.)
+  (String?, int)? get8nStr({required int start}) {
+    if (length < start) {
+      return null;
+    }
+    int len = this[start];
+    start = start + 1;
+    String? val;
+    if (length >= start + len) {
+      val = toStrByLoc(loc: start, len: len);
+    }
+    return (val, len + 1);
+  }
+
+  //the totoal count , means dataLen + 1(start --> the count.)
+  (List<String>, int)? getAll8nStrs({required int start}) {
+    if (length <= start) {
+      return null;
+    }
+    int allStrsCount = this[start]; //1 bytes.
+    int dataLength = 1;
+    int tempStart = start + 1;
+    List<String> strs = [];
+    for (int i = 0; i < allStrsCount; i++) {
+      var val = get8nStr(start: tempStart);
+      if (val != null) {
+        String? str = val.$1;
+        if (str != null) {
+          strs.add(str);
+          tempStart = tempStart + val.$2;
+        }
+        dataLength = dataLength + val.$2;
+      }
+    }
+    return (strs, dataLength);
   }
 
 }
