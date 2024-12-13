@@ -122,7 +122,13 @@ flavorizr:
     production:
       app:
         name: "FlutterProd"
-
+      android:
+        applicationId: "com.harrison.flutterDemos"
+      ios:
+        bundleId: "com.harrison.flutterDemos"
+    harrison_prod:
+      app:
+        name: "FlutterProd"
       android:
         applicationId: "com.harrison.flutterDemos"
       ios:
