@@ -11,9 +11,6 @@ project 'Runner', {
   'Debug-production' => :debug,
   'Profile-production' => :release,
   'Release-production' => :release,
-  'Debug-harrison_prod' => :debug,
-  'Profile-harrison_prod' => :release,
-  'Release-harrison_prod' => :release,
 }
 
 def flutter_root

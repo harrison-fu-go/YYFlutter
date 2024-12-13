@@ -1,7 +1,0 @@
-#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
-#include "Generated.xcconfig"
-
-FLUTTER_TARGET=lib/main_harrison_prod.dart
-ASSET_PREFIX=harrison_prod
-BUNDLE_NAME=FlutterProd
-BUNDLE_DISPLAY_NAME=FlutterProd

@@ -1,7 +1,6 @@
 enum Flavor {
   development,
   production,
-  harrison_prod,
 }
 
 class F {
@@ -14,8 +13,6 @@ class F {
       case Flavor.development:
         return 'FlutterDebug';
       case Flavor.production:
-        return 'FlutterProd';
-      case Flavor.harrison_prod:
         return 'FlutterProd';
       default:
         return 'title';
