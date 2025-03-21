@@ -43,12 +43,10 @@ dependencies:
   path_provider: ^2.0.11  # 用于获取文件存储路径
   crc: ^0.0.2 # 或者最新版本
   crypto: ^3.0.0
-  flutter_flavorizr: ^2.2.3 #设置多平台
-  flutter_launcher_icons: "^0.14.1" #设置app icons.
-  flutter_native_splash: ^2.4.2
-  flutter_contacts: 1.1.5
+#  flutter_contacts: 1.1.5
   permission_handler: 11.3.1
   flutter_native_contact_picker: 0.0.7
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +60,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
+
+  #设置多平台
+  #注意： 不要设置 release结尾的 flavor，不然会出现莫名其妙的错误。
+  flutter_flavorizr: ^2.2.3
+  flutter_launcher_icons: "^0.14.1" #设置app icons.
+  flutter_native_splash: ^2.4.2
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

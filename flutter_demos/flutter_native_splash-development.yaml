@@ -1,0 +1,69 @@
+#run: dart run flutter_native_splash:create --flavors env_dev,env_release,moody
+
+flutter_native_splash:
+  android_gravity: center
+  ios_content_mode: center
+  color: "#f0f0f0"
+  color_dark: "#f0f0f0"
+  image_android: assets/images/splash_moody_android.png
+  image_dark_android: assets/images/splash_moody_android.png
+  image_ios: assets/images/splash_moody_ios.png
+  image_dark_ios: assets/images/splash_moody_ios.png
+  android_12:
+    icon_background_color: "#f0f0f0"
+    image: assets/images/splash_moody_android.png
+    image_dark: assets/images/splash_moody_android.png
+  web: false
+#  android:
+#    image: assets/images/splash_moody_android.png # Android 启动图片
+#    image_dark: assets/images/splash_moody_android.png
+#  ios:
+#    image: assets/images/splash_moody_ios.png # iOS 启动图片
+#    image_dark: assets/images/splash_moody_ios.png
+#  android_12:
+#    android_gravity: center
+#    ios_content_mode: center
+#    color: "#f0f0f0"
+#    color_dark: "#f0f0f0"
+#    android:
+#      image: assets/images/splash_moody_android.png # Android 启动图片
+#      image_dark: assets/images/splash_moody_android.png
+#  web: false
+#  color: "#f0f0f0"
+#  image: assets/images/moody_logo.png
+#  branding: assets/images/moody_brand.png
+#  branding_bottom_padding: 124
+#  color_dark: "#f0f0f0"
+#  image_dark: assets/images/moody_logo.png
+#  branding_dark: assets/images/moody_brand.png
+
+
+#  color: "#f0f0f0"
+#  image: assets/images/splash_moody.png
+#  android_gravity: center
+#  ios_content_mode: center
+#  color_dark: "#f0f0f0"
+#  image_dark: assets/images/splash_moody.png
+#  android_12:
+#    image: assets/images/splash_moody.png
+##    branding: assets/images/moody_brand.png
+#    icon_background_color: "#f0f0f0"
+#    image_dark: assets/images/splash_moody.png
+#    icon_background_color_dark: "#f0f0f0"
+##    branding_dark: assets/images/moody_brand.png
+#  web: false
+
+#    color: "#f0f0f0"
+#    image: assets/images/splash_prod.png
+#    android_gravity: center
+#    ios_content_mode: center
+#    color_dark: "#f0f0f0"
+#    image_dark: assets/images/splash_prod.png
+#    android_12:
+#      image: assets/images/splash_prod.png
+#      #    branding: assets/images/moody_brand.png
+#      icon_background_color: "#f0f0f0"
+#      image_dark: assets/images/splash_prod.png
+#      icon_background_color_dark: "#f0f0f0"
+#    #    branding_dark: assets/images/moody_brand.png
+#    web: false

@@ -198,16 +198,8 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_contacts:
-    dependency: "direct main"
-    description:
-      name: flutter_contacts
-      sha256: "3f95d0c329b2abc8229c51b8c8b71a769708aef1d8575841641b3883dd2e9d75"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.5"
   flutter_flavorizr:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_flavorizr
       sha256: e9550f67a890b9111ac5a555954f3808cb8c0132ce6dea08e3381964de39b906
@@ -215,7 +207,7 @@ packages:
     source: hosted
     version: "2.2.3"
   flutter_launcher_icons:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_launcher_icons
       sha256: "619817c4b65b322b5104b6bb6dfe6cda62d9729bd7ad4303ecc8b4e690a67a77"
@@ -244,7 +236,7 @@ packages:
     source: hosted
     version: "0.0.7"
   flutter_native_splash:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: flutter_native_splash
       sha256: ee5c9bd2b74ea8676442fd4ab876b5d41681df49276488854d6c81a5377c0ef1
@@ -261,6 +253,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      sha256: "25e51620424d92d3db3832464774a6143b5053f15e382d8ffbfd40b6e795dcf1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "8.2.12"
   get:
     dependency: "direct main"
     description:

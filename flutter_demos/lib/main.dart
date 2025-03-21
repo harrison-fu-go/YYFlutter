@@ -50,9 +50,20 @@ void main() {
   String md5result = iMd5('123456');
   print('===== md5result: $md5result');
   // WidgetsFlutterBinding.ensureInitialized();
-
+  fetchData();
   runApp(const MyApp());
 }
+
+Future<void> fetchData() async {
+  List<int> items = [1, 2, 3, 4, 5];
+  for (int item in items) {
+    await Future.delayed(Duration(seconds: 3));
+    print('Processing item: $item');
+  }
+  print('All items processed!');
+}
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
