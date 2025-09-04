@@ -1,25 +1,11 @@
-name: flutter_demos
-description: "A new Flutter project."
+name: audio_cases_example
+description: "Demonstrates how to use the audio_cases plugin."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-# In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+9
-
 environment:
-  sdk: ^3.5.2
+  sdk: ^3.7.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,48 +16,31 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations: # 添加这个依赖
-    sdk: flutter
-  intl: ^0.19.0 # 添加国际化包（用于翻译）
-  cupertino_icons: ^1.0.8
-  get: ^4.6.5
-  dio: ^5.2.1+1
-  encrypt: ^5.0.3
-  pointycastle: ^3.9.1
-  device_info_plus: ^10.1.2
-  package_info_plus: ^4.0.0
-  path_provider: ^2.0.11  # 用于获取文件存储路径
-  crc: ^0.0.2 # 或者最新版本
-  crypto: ^3.0.0
-#  flutter_contacts: 1.1.5
-  permission_handler: 11.3.1
-  flutter_native_contact_picker: 0.0.7
-  fluttertoast: ^8.2.2
-  gyges_logger:
-    path: packages/gyges_logger
+
   audio_cases:
-      path: packages/audio_cases
-  realm: ^20.0.1
-  share_plus: ^7.0.0
-  url_launcher: ^6.3.1
-  flutter_markdown: ^0.6.18
+    # When depending on this package from a real application you should use:
+    #   audio_cases: ^x.y.z
+    # See https://dart.dev/tools/pub/dependencies#version-constraints
+    # The example app is bundled with the plugin so we use a path dependency on
+    # the parent directory to use the current plugin's version.
+    path: ../
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
-
-  #设置多平台
-  #注意： 不要设置 release结尾的 flavor，不然会出现莫名其妙的错误。
-  flutter_flavorizr: ^2.2.3
-  flutter_launcher_icons: "^0.14.1" #设置app icons.
-  flutter_native_splash: ^2.4.2
-
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,10 +52,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-  - assets/lang/en.json
-  - assets/lang/zh.json
-  - assets/images/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -117,24 +83,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
-#flutter pub run flutter_flavorizr
-flavorizr:
-  flavors:
-    development:
-      app:
-        name: "FlutterDebug"
-
-      android:
-        applicationId: "com.harrison.flutterDemos.dev"
-      ios:
-        bundleId: "com.harrison.flutterDemos.dev"
-    production:
-      app:
-        name: "FlutterProd"
-
-      android:
-        applicationId: "com.harrison.flutterDemos"
-      ios:
-        bundleId: "com.harrison.flutterDemos"
-

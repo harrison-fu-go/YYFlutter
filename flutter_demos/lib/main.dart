@@ -5,7 +5,11 @@ import 'package:flutter_demos/crypt/aes.dart';
 import 'package:flutter_demos/crypt/hash_utils.dart';
 import 'package:flutter_demos/crypt/rsa.dart';
 import 'package:flutter_demos/date_time/YYDateTime.dart';
-import 'package:flutter_demos/pages/home_demo.dart';
+import 'package:flutter_demos/pages/widgets/mark_down_test.dart';
+import 'package:flutter_demos/pages/widgets/my_keyboards_page.dart';
+import 'package:flutter_demos/pages/widgets/my_slider_widgets.dart';
+import 'package:flutter_demos/pages/widgets/my_stateless_demo_page.dart';
+import 'package:flutter_demos/pages/widgets/widgets_index_page.dart';
 import 'package:flutter_demos/pages/home_test.dart';
 import 'package:flutter_demos/pages/home_test1.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,8 +51,7 @@ void main() async {
   GLLogger.shared.initBase();
 
   String content = "jdjdjddjddj\nfdfsdfsfdsfsfsfs";
-  File file = await ZipUtil.compressStringToZip(
-      content: content, fileName: "ok_gogo", saveInCache: true);
+  File file = await ZipUtil.compressStringToZip(content: content, fileName: "ok_gogo", saveInCache: true);
   print('===== file: $file');
   runApp(const MyApp());
 }
@@ -78,8 +81,12 @@ class MyApp extends StatelessWidget {
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => HomePage()),
+        GetPage(name: '/', page: () => const HomePage()),
         GetPage(name: '/second', page: () => SecondPage()),
+        GetPage(name: '/demo', page: ()=>const StatelessDemoPage()),
+        GetPage(name: '/markdown', page: ()=>const MarkDownTestPage()),
+        GetPage(name: '/demoKeyboard', page: () => MyKeyboardsPage()),
+        GetPage(name: '/sliders', page: ()=>const SlidersPage())
       ],
     );
   }
@@ -142,8 +149,7 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
               BottomNavigationBarItem(icon: Icon(Icons.search), label: "搜索"),
               BottomNavigationBarItem(icon: Icon(Icons.contacts), label: "联系人"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.work_outline_sharp), label: "demos")
+              BottomNavigationBarItem(icon: Icon(Icons.widgets), label: "widgets")
             ],
           ),
         ),
