@@ -6,3 +6,4 @@ Future<void> main() async {
   F.appFlavor = Flavor.production;
   runner.main();
 }
+

@@ -1,4 +1,40 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- 必须声明 INTERNET 权限 -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <!-- 如果你有网络状态的相关操作，可能需要使用 ACCESS_NETWORK_STATE -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+  <!-- 添加或更新 queries 部分 -->
+  <queries>
+    <!-- 保留现有的 PROCESS_TEXT 查询 -->
+    <intent>
+      <action android:name="android.intent.action.PROCESS_TEXT" />
+      <data android:mimeType="text/plain" />
+    </intent>
+
+    <!-- 添加以下内容以支持 URL 启动 -->
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="https" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="http" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.DIAL" />
+      <data android:scheme="tel" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.SENDTO" />
+      <data android:scheme="mailto" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.SEND" />
+      <data android:mimeType="*/*" />
+    </intent>
+  </queries>
+
   <application android:label="@string/app_name" android:name="${applicationName}" android:icon="@mipmap/ic_launcher">
     <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:taskAffinity="" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
       <!-- Specifies an Android theme to apply to this Activity as soon as
@@ -26,4 +62,5 @@
       <data android:mimeType="text/plain"/>
     </intent>
   </queries>
+
 </manifest>

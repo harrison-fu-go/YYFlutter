@@ -47,13 +47,16 @@ dependencies:
   permission_handler: 11.3.1
   flutter_native_contact_picker: 0.0.7
   fluttertoast: ^8.2.2
+  gyges_logger:
+    path: packages/gyges_logger
+  realm: ^20.0.1
+  share_plus: ^7.0.0
+  url_launcher: ^6.3.1
+  flutter_markdown: ^0.6.18
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  test:
-    path: packages/test
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

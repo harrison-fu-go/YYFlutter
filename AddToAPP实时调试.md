@@ -25,3 +25,8 @@ post_install do |installer|
     flutter_post_install(installer) if defined?(flutter_post_install)
   end
 end
+
+
+
+#遇到的坑。
+1. 遇到Android studio，无法Debug-> 请注意main.dart 的命名，以main_release结尾，工具认为是release模式无法debug。 

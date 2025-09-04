@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../scroll_demo/scroll_content.dart';
+import '../share/share.dart';
 
 class HomePage2 extends StatelessWidget {
   const HomePage2({super.key});
@@ -73,6 +74,11 @@ class HomePage2 extends StatelessWidget {
               showFlutterToast();
             },
             child: const Text('Show flutter toast')),
+        ElevatedButton(
+            onPressed: () {
+              YYShare.shareTextWithSubject("ddddd....", 'hello');
+            },
+            child: const Text('Share')),
         Container(height: 300, width: 300, child: const ScrollContentDemo())
       ]),
     );
@@ -96,13 +102,13 @@ class BottomSheetContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(20),
         ),
       ),
-      child: Center(
+      child: const Center(
         child: Text('This is a custom bottom sheet'),
       ),
     );

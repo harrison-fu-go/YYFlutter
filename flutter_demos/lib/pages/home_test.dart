@@ -13,8 +13,7 @@ import 'package:flutter_demos/dio/download/download_service.dart';
 import 'package:flutter_demos/system_info/app_info.dart';
 import 'package:flutter_demos/system_info/device_info.dart';
 import 'package:get/get.dart';
-
-
+import 'package:gyges_logger/gyges_logger.dart';
 import '../TexsSpans/cus_text_icon_span.dart';
 import '../getX/get_x_controller.dart';
 import '../strings/string_util.dart';
@@ -29,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // 创建控制器的实例
   final CounterController counterControl = Get.put(CounterController());
+
   void _incrementCounter() {
     counterControl.increment(); // 调用控制器的方法
   }
@@ -36,12 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
   double downloadProgress = 0.0;
   bool downloadFinished = false;
 
+  Future<void> test() async {
+
+  }
   @override
   void initState() {
     super.initState();
     DioRequest.setUp();
-
-
+    test();
     // String original = "即风刀霜dddddabcdefg";
     // String limited = limitToByteLen(original, 3);
     // print("Original: $original");
@@ -54,7 +56,74 @@ class _MyHomePageState extends State<MyHomePage> {
     //   print('result: ==== $decodeList');
     // }
 
-    List<int> datas = [2, 9, 230, 136, 145, 230, 136, 145, 230, 136, 145, 9, 228, 189, 160, 228, 189, 160, 228, 189, 160, 0, 1, 15, 99, 111, 109, 46, 97, 110, 100, 114, 111, 105, 100, 46, 109, 109, 115, 1, 2, 3, 49, 49, 49, 2, 49, 50, 1, 6, 230, 157, 142, 229, 155, 155, 1, 3, 50, 50, 50, 1, 3, 51, 51, 51];
+    List<int> datas = [
+      2,
+      9,
+      230,
+      136,
+      145,
+      230,
+      136,
+      145,
+      230,
+      136,
+      145,
+      9,
+      228,
+      189,
+      160,
+      228,
+      189,
+      160,
+      228,
+      189,
+      160,
+      0,
+      1,
+      15,
+      99,
+      111,
+      109,
+      46,
+      97,
+      110,
+      100,
+      114,
+      111,
+      105,
+      100,
+      46,
+      109,
+      109,
+      115,
+      1,
+      2,
+      3,
+      49,
+      49,
+      49,
+      2,
+      49,
+      50,
+      1,
+      6,
+      230,
+      157,
+      142,
+      229,
+      155,
+      155,
+      1,
+      3,
+      50,
+      50,
+      50,
+      1,
+      3,
+      51,
+      51,
+      51
+    ];
     var value = datas.getAll8nStrs(start: 0);
     print('result: ==== $value');
   }
@@ -63,7 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
         title: Text(widget.title),
       ),
       // bottomNavigationBar: BottomNavigationBar(
@@ -78,10 +150,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Center(
               // 使用 Obx 监听状态变化并更新 UI
-              child: Obx(() => Text(
-                'Clicked ${counterControl.count} times',
-                style: const TextStyle(fontSize: 30),
-              )),
+              child: Obx(() =>
+                  Text(
+                    'Clicked ${counterControl.count} times',
+                    style: const TextStyle(fontSize: 30),
+                  )),
             ),
             ElevatedButton(
               onPressed: () {
@@ -105,8 +178,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RichTextWithIcon(
               spanModels: [
-                TextSpanModel(isIcon: true, iNeedTap: true, style: const TextStyle(height: 40)),
-                TextSpanModel(text: 'hellodd-----jfjslkdfjsldfjslfjs fdjslkfjsklfjdslfkjs fdsjfkjdkfs fdskfjskfj'),
+                TextSpanModel(isIcon: true,
+                    iNeedTap: true,
+                    style: const TextStyle(height: 40)),
+                TextSpanModel(
+                    text: 'hellodd-----jfjslkdfjsldfjslfjs fdjslkfjsklfjdslfkjs fdsjfkjdkfs fdskfjskfj'),
                 TextSpanModel(text: 'helllllll')
               ],
               onTapCallback: (val) {
@@ -223,31 +299,6 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
-    );
-  }
-
-  void _showCustomBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return FractionallySizedBox(
-          heightFactor: 0.5, // 控制弹框的高度
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            ),
-            child: Center(
-              child: Text(
-                '自定义底部弹框内容',
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
