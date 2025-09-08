@@ -6,6 +6,7 @@ public class AudioCasesPlugin: NSObject, FlutterPlugin {
     let channel = FlutterMethodChannel(name: "audio_cases", binaryMessenger: registrar.messenger())
     let instance = AudioCasesPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
+    AudioRecorerPlugin.register(with: registrar)
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

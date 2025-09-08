@@ -38,6 +38,7 @@ class _HomeDemoPageState extends State<HomeDemoPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
             IElevatedButton(title: 'Test Markdown', onTap: (index) {
@@ -55,8 +56,12 @@ class _HomeDemoPageState extends State<HomeDemoPage> {
             IElevatedButton(title: 'Test sliders', onTap: (index) {
               Get.toNamed('/sliders');
             }),
+            const SizedBox(height: 8),
+            IElevatedButton(title: 'Test Audio', onTap: (index) {
+              Get.toNamed('/audio');
+            }),
           ],
-        ),
+        ).paddingSymmetric(horizontal: 8),
       ),
     );
   }

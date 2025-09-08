@@ -19,5 +19,4 @@ class StatelessDemoPage extends StatelessWidget {
     body: const Text('Module in developing...').paddingSymmetric(horizontal: 16));
   }
 
-
 }

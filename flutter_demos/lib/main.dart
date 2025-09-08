@@ -6,6 +6,7 @@ import 'package:flutter_demos/crypt/hash_utils.dart';
 import 'package:flutter_demos/crypt/rsa.dart';
 import 'package:flutter_demos/date_time/YYDateTime.dart';
 import 'package:flutter_demos/pages/widgets/mark_down_test.dart';
+import 'package:flutter_demos/pages/widgets/my_audio_test_page.dart';
 import 'package:flutter_demos/pages/widgets/my_keyboards_page.dart';
 import 'package:flutter_demos/pages/widgets/my_slider_widgets.dart';
 import 'package:flutter_demos/pages/widgets/my_stateless_demo_page.dart';
@@ -86,7 +87,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/demo', page: ()=>const StatelessDemoPage()),
         GetPage(name: '/markdown', page: ()=>const MarkDownTestPage()),
         GetPage(name: '/demoKeyboard', page: () => MyKeyboardsPage()),
-        GetPage(name: '/sliders', page: ()=>const SlidersPage())
+        GetPage(name: '/sliders', page: ()=>const SlidersPage()),
+        GetPage(name: '/audio', page: ()=>const MyAudioTestPage()),
       ],
     );
   }
