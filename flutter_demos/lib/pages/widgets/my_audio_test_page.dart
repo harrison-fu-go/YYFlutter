@@ -25,15 +25,17 @@ class MyAudioTestPageState extends State<MyAudioTestPage> {
       appBar: AppBar(
         title: const Text('Audio Test'),
       ),
-      body: Column(children: [
-        SizedBox(height: 16),
-        IElevatedButton(title: '开始/结束录音', onTap: (idx) {
-            AudioRecorder.start((success) {
-
-            });
-        },),
-
-      ],).paddingSymmetric(horizontal: 16),
+      body: Column(
+        children: [
+          SizedBox(height: 16),
+          IElevatedButton(
+            title: '开始/结束录音',
+            onTap: (idx) {
+              AudioRecorder.start((success) {});
+            },
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 16),
     );
   }
 }

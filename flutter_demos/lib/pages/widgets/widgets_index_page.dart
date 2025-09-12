@@ -41,29 +41,44 @@ class _HomeDemoPageState extends State<HomeDemoPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 8),
-            IElevatedButton(title: 'Test Markdown', onTap: (index) {
-              Get.toNamed('/markdown');
-            }),
+            IElevatedButton(
+                title: 'Test Markdown',
+                onTap: (index) {
+                  Get.toNamed('/markdown');
+                }),
             const SizedBox(height: 8),
-            IElevatedButton(title: 'Test Keyboard', onTap: (index) {
-              Get.toNamed('/demoKeyboard');
-            }),
+            IElevatedButton(
+                title: 'Test Keyboard',
+                onTap: (index) {
+                  Get.toNamed('/demoKeyboard');
+                }),
             const SizedBox(height: 8),
-            IElevatedButton(title: 'Open http link', onTap: (index) {
-              OpenLink.launchURL();
-            }),
+            IElevatedButton(
+                title: 'Open http link',
+                onTap: (index) {
+                  OpenLink.launchURL();
+                }),
             const SizedBox(height: 8),
-            IElevatedButton(title: 'Test sliders', onTap: (index) {
-              Get.toNamed('/sliders');
-            }),
+            IElevatedButton(
+                title: 'Test sliders',
+                onTap: (index) {
+                  Get.toNamed('/sliders');
+                }),
             const SizedBox(height: 8),
-            IElevatedButton(title: 'Test Audio', onTap: (index) {
-              Get.toNamed('/audio');
-            }),
+            IElevatedButton(
+                title: 'Test Audio',
+                onTap: (index) {
+                  Get.toNamed('/audio');
+                }),
+            const SizedBox(height: 8),
+            IElevatedButton(
+                title: 'Test Audio',
+                onTap: (index) {
+                  Get.toNamed('/drawer');
+                }),
           ],
         ).paddingSymmetric(horizontal: 8),
       ),
     );
   }
 }
-
