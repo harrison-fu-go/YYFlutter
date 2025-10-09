@@ -62,6 +62,24 @@ class MainScreen {
     return safeH;
   }
 
+  static double get leftSafeW {
+    BuildContext? context = Get.context;
+    double safeH = 0;
+    if (context != null) {
+      safeH = MediaQuery.of(context).padding.left;
+    }
+    return safeH;
+  }
+
+  static double get rightSafeW {
+    BuildContext? context = Get.context;
+    double safeH = 0;
+    if (context != null) {
+      safeH = MediaQuery.of(context).padding.right;
+    }
+    return safeH;
+  }
+
   static double get appBarH {
     return 56;
   }

@@ -4,6 +4,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_utils/src/extensions/export.dart';
 
 import '../../../styles/main_screen_styles.dart';
@@ -28,6 +29,8 @@ class MindMapPageState extends State<MindMapPage>
   late Animation<double> _scaleAnimation;
   double maxScale = 30.0;
   double minScale = 0.1;
+  bool _isLandscape = false;
+  double topSafeH = MainScreen.topSafeH;
   @override
   void initState() {
     super.initState();
@@ -60,6 +63,11 @@ class MindMapPageState extends State<MindMapPage>
 
   @override
   void dispose() {
+    // // 恢复屏幕方向设置
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     _transformationController.dispose();
     _animationController.dispose();
     super.dispose();
@@ -119,63 +127,123 @@ class MindMapPageState extends State<MindMapPage>
     _animationController.forward(from: 0.0);
   }
 
+  // 切换横屏/竖屏
+  void _toggleOrientation() {
+    setState(() {
+      _isLandscape = !_isLandscape;
+    });
+
+    if (_isLandscape) {
+      // 切换到横屏并隐藏系统UI
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    } else {
+      // 切换回竖屏并显示系统UI
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      ]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: MainScreen.topSafeH),
-          const SizedBox(width: 10),
-          Row(
-            children: [
-              const SizedBox(width: 10),
-              IElevatedButton(
-                  title: '+',
-                  onTap: (index) {
-                    // 获取当前缩放值
-                    double currentScale =
-                        _transformationController.value.getMaxScaleOnAxis();
-                    double targetScale = currentScale + 0.5;
-                    if (targetScale > maxScale) {
-                      targetScale = maxScale;
-                    }
-                    // 使用动画缩放
-                    _animateScale(targetScale);
-                  }),
-              const SizedBox(width: 10),
-              IElevatedButton(
-                  title: '-',
-                  onTap: (index) {
-                    double currentScale =
-                        _transformationController.value.getMaxScaleOnAxis();
-                    double targetScale = currentScale - 0.5;
-                    if (targetScale < minScale) {
-                      targetScale = minScale;
-                    }
-                    // 使用动画缩放
-                    _animateScale(targetScale);
-                  }),
-              const SizedBox(width: 10),
-              IElevatedButton(
-                  title: '旋转',
-                  onTap: (index) {
-                    print('旋转: $index');
-                  }),
-            ],
-          ),
+          // 横屏时隐藏控制按钮
+          if (!_isLandscape) ...[
+            SizedBox(height: topSafeH),
+            const SizedBox(width: 10),
+            Row(
+              children: [
+                const SizedBox(width: 10),
+                IElevatedButton(
+                    title: '+',
+                    onTap: (index) {
+                      // 获取当前缩放值
+                      double currentScale =
+                          _transformationController.value.getMaxScaleOnAxis();
+                      double targetScale = currentScale + 0.5;
+                      if (targetScale > maxScale) {
+                        targetScale = maxScale;
+                      }
+                      // 使用动画缩放
+                      _animateScale(targetScale);
+                    }),
+                const SizedBox(width: 10),
+                IElevatedButton(
+                    title: '-',
+                    onTap: (index) {
+                      double currentScale =
+                          _transformationController.value.getMaxScaleOnAxis();
+                      double targetScale = currentScale - 0.5;
+                      if (targetScale < minScale) {
+                        targetScale = minScale;
+                      }
+                      // 使用动画缩放
+                      _animateScale(targetScale);
+                    }),
+                const SizedBox(width: 10),
+                IElevatedButton(
+                    title: '旋转',
+                    onTap: (index) {
+                      _toggleOrientation();
+                    }),
+              ],
+            ),
+          ],
           Expanded(
-            child: InteractiveViewer(
-              maxScale: maxScale,
-              minScale: minScale,
-              constrained: false,
-              boundaryMargin: const EdgeInsets.all(1000),
-              transformationController: _transformationController,
-              child: Container(
-                color: Colors.transparent,
-                width: MainScreen.screenW,
-                height: MainScreen.screenH - 100,
-                child: buildMindPoint(rootList),
-              ),
+            child: Stack(
+              children: [
+                InteractiveViewer(
+                  maxScale: maxScale,
+                  minScale: minScale,
+                  constrained: false,
+                  boundaryMargin: const EdgeInsets.all(1000),
+                  transformationController: _transformationController,
+                  child: Container(
+                    color: Colors.transparent,
+                    // 横屏时调整容器尺寸，更适合从左往右展示
+                    width: _isLandscape
+                        ? MediaQuery.of(context).size.width * 2
+                        : MainScreen.screenW,
+                    height: _isLandscape
+                        ? MediaQuery.of(context).size.height
+                        : MainScreen.screenH - 100,
+                    alignment:
+                        _isLandscape ? Alignment.centerLeft : Alignment.center,
+                    child: _isLandscape
+                        ? Row(
+                            children: [
+                              SizedBox(width: MainScreen.leftSafeW),
+                              buildMindPoint(rootList)
+                            ],
+                          )
+                        : buildMindPoint(rootList),
+                  ),
+                ),
+                // 横屏时显示退出按钮
+                if (_isLandscape)
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: SafeArea(
+                      child: IconButton(
+                        icon: const Icon(Icons.close, color: Colors.white),
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.black54,
+                        ),
+                        onPressed: () {
+                          _toggleOrientation();
+                        },
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
         ],
@@ -187,7 +255,8 @@ class MindMapPageState extends State<MindMapPage>
     return MindPoint(
         title: model.title,
         titleStyle: model.titleStyle,
-        maxTextWidth: model.maxTextWidth,
+        maxTextWidth:
+            _isLandscape ? model.landscapeMaxTextWidth : model.maxTextWidth,
         height: model.height,
         componentWith: model.componentWith,
         lineColor: model.lineColor,
@@ -241,13 +310,19 @@ class MindPointState extends State<MindPoint> {
   }
 
   @override
+  void didUpdateWidget(covariant MindPoint oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    title = widget.title;
+    width = widget.maxTextWidth;
+    height = widget.height;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
       height: height,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           ConstraintsText(text: title, maxWidth: width, textStyle: titleStyle)
