@@ -5,7 +5,6 @@
 
 import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 import 'package:encrypt/encrypt.dart' as encrypt;
 
 String aesEncryptCBC(String keyStr, String ivStr, String plainText) {
@@ -47,14 +46,13 @@ String aesDecryptCBC(String keyStr, String ivStr, String encryptedBase64) {
   return const Utf8Decoder().convert(decrypted).trim();
 }
 
- String randomStr(int len) {
-final random = Random();
-const chars =
-'1234567890AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
-final randomString = List.generate(len,
-(index) => chars[random.nextInt(chars.length)])
-    .join();
-return randomString;
+String randomStr(int len) {
+  final random = Random();
+  const chars =
+      '1234567890AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+  final randomString =
+      List.generate(len, (index) => chars[random.nextInt(chars.length)]).join();
+  return randomString;
 }
 
 // String aesEncrypt(String input, String key, String iv,

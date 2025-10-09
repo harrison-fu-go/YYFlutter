@@ -15,26 +15,29 @@ class MyDrawerAnimationPageState extends State<MyDrawerAnimationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Drawer Animation')),
-      body: const WaveformEditor(),
+      body: const DrawerAnimationPage(),
     );
   }
 }
 
-class WaveformEditor extends StatefulWidget {
-  const WaveformEditor({super.key});
+class DrawerAnimationPage extends StatefulWidget {
+  const DrawerAnimationPage({super.key});
 
   @override
-  State createState() => WaveformEditorState();
+  State createState() => DrawerAnimationPageState();
 }
 
-class WaveformEditorState extends State<WaveformEditor> {
+class DrawerAnimationPageState extends State<DrawerAnimationPage> {
   final ScrollController containerScrollCtr =
       ScrollController(initialScrollOffset: 200);
   final ScrollController cardScrollCtr =
       ScrollController(initialScrollOffset: 0);
+
   double _offset = 0.0; // 当前滚动位置的偏移量
   bool isDoingAdsorbing = false;
-  bool isCanCardScroll = true;
+  int overscrollCount = 0;
+  bool isCanSubScroll = true;
+
   @override
   void initState() {
     super.initState();
@@ -43,31 +46,34 @@ class WaveformEditorState extends State<WaveformEditor> {
         _offset = containerScrollCtr.offset;
       });
     });
+    cardScrollCtr.addListener(() {
+      if (containerScrollCtr.offset < 200) {
+        cardScrollCtr.jumpTo(0);
+        if (isCanSubScroll) {
+          setState(() {
+            isCanSubScroll = false;
+          });
+        }
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollNotification>(
         onNotification: (scrollNotification) {
-          if (scrollNotification is OverscrollNotification &&
-              scrollNotification.depth == 1 &&
-              scrollNotification.overscroll < -5) {
-            print("container---->收到子控件无法处理--->$scrollNotification");
-            setState(() {
-              isCanCardScroll = false;
-            });
-            return true;
-          }
+          // if (scrollNotification is OverscrollNotification &&
+          //     scrollNotification.depth == 1 &&
+          //     scrollNotification.overscroll < 0) {
+          //   print("container---->收到子控件无法处理--->$scrollNotification");
+          //   // 手动触发父控件滚动，模拟继续当前手势
+          //   _handleParentScroll(scrollNotification.overscroll);
+          //   return true; // 让通知继续传播
+          // }
           if (scrollNotification is ScrollEndNotification) {
-            print("container---->滚动停止");
-            if (!isDoingAdsorbing) {
+            print("container---->滚动停止-> $overscrollCount");
+            if (!isDoingAdsorbing && overscrollCount == 0) {
               _snapToClosest();
-            }
-          }
-          if (scrollNotification is ScrollUpdateNotification) {
-            if (scrollNotification.metrics.pixels >=
-                scrollNotification.metrics.maxScrollExtent) {
-              print("container---->已经滚动到底部");
             }
           }
           return true;
@@ -90,46 +96,63 @@ class WaveformEditorState extends State<WaveformEditor> {
                         Get.height - MainScreen.topSafeH - MainScreen.appBarH,
                     width: Get.width,
                     child: NotificationListener<ScrollNotification>(
-                        onNotification: (cardNofify) {
-                          if (cardNofify is OverscrollNotification) {
-                            return false;
-                          }
+                      onNotification: (subScrollNotification) {
+                        print("sub--> $subScrollNotification");
+                        if (subScrollNotification is OverscrollNotification) {
+                          // 让 OverscrollNotification 向上传播到父控件
+                          print("sub--> 子控件发生过度滚动，传播给父控件");
+                          _handleParentScroll(subScrollNotification.overscroll);
                           return true;
-                        },
-                        child: IgnorePointer(
-                          ignoring: !isCanCardScroll,
-                          child: SingleChildScrollView(
-                            controller: cardScrollCtr,
-                            child: Column(
-                              children: [
-                                Container(
-                                    color: Colors.purple,
-                                    height: 200,
-                                    width: Get.width),
-                                Container(
-                                    color: Colors.green,
-                                    height: 200,
-                                    width: Get.width),
-                                Container(
-                                    color: Colors.purple,
-                                    height: 200,
-                                    width: Get.width),
-                                Container(
-                                    color: Colors.green,
-                                    height: 200,
-                                    width: Get.width),
-                                Container(
-                                    color: Colors.purple,
-                                    height: 200,
-                                    width: Get.width),
-                                Container(
-                                    color: Colors.green,
-                                    height: 200,
-                                    width: Get.width),
-                              ],
-                            ),
+                        }
+                        if (subScrollNotification is ScrollEndNotification) {
+                          overscrollCount = 0;
+                          _snapToClosest();
+                        }
+                        return true;
+                      },
+                      child: IgnorePointer(
+                        ignoring: !isCanSubScroll,
+                        child: SingleChildScrollView(
+                          controller: cardScrollCtr,
+                          child: Column(
+                            children: [
+                              Container(
+                                color: Colors.purple,
+                                height: 200,
+                                width: Get.width,
+                                child: const Text('1dfsdfds...'),
+                              ),
+                              Container(
+                                  color: Colors.green,
+                                  height: 200,
+                                  width: Get.width),
+                              Container(
+                                  color: Colors.purple,
+                                  height: 200,
+                                  width: Get.width),
+                              Container(
+                                  color: Colors.yellow,
+                                  height: 400,
+                                  width: Get.width),
+                              Container(
+                                  color: Colors.green,
+                                  height: 200,
+                                  width: Get.width),
+                              Container(
+                                  color: Colors.purple,
+                                  height: 200,
+                                  width: Get.width),
+                              Container(
+                                color: Colors.green,
+                                height: 200,
+                                width: Get.width,
+                                child: const Text('This is the end'),
+                              ),
+                            ],
                           ),
-                        )),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -142,6 +165,7 @@ class WaveformEditorState extends State<WaveformEditor> {
     0.0,
     200.0,
   ];
+
   // 判断最接近的吸附位置
   void _snapToClosest() {
     double closestPosition = snapPositions.reduce((curr, next) =>
@@ -155,10 +179,22 @@ class WaveformEditorState extends State<WaveformEditor> {
     await Future.delayed(const Duration(milliseconds: 100));
     await containerScrollCtr.animateTo(position,
         duration: const Duration(milliseconds: 200), curve: Curves.easeInOut);
-    isDoingAdsorbing = false;
     setState(() {
-      isCanCardScroll = position == 200;
+      isCanSubScroll = position == 200;
     });
+    isDoingAdsorbing = false;
     print("scrollToPosition end");
+  }
+
+  // 处理父控件滚动，接管子控件的过度滚动
+  void _handleParentScroll(double overscroll) {
+    // 将子控件的过度滚动量转换为父控件的滚动
+    double newOffset = containerScrollCtr.offset + (overscroll * 0.5);
+    print("父控件接管滚动，overscroll: $overscroll-->newOffset: $newOffset");
+    // 确保不超出父控件的滚动范围
+    if (newOffset < containerScrollCtr.position.maxScrollExtent) {
+      overscrollCount = overscrollCount + 1;
+      containerScrollCtr.jumpTo(newOffset);
+    }
   }
 }

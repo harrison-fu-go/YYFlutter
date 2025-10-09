@@ -21,6 +21,8 @@ import 'package:gyges_logger/gyges_logger_archive.dart';
 import 'contacts/contact_picker.dart';
 import 'getX/get_x_second_page.dart';
 import 'languages/languages.dart';
+import 'pages/widgets/mind_map/my_mind_map_page.dart';
+import 'pages/widgets/my_audio_wave.dart';
 
 void main() async {
   /**
@@ -92,6 +94,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/sliders', page: () => const SlidersPage()),
         GetPage(name: '/audio', page: () => const MyAudioTestPage()),
         GetPage(name: '/drawer', page: () => const MyDrawerAnimationPage()),
+        GetPage(name: '/audioWave', page: () => const MyAudioWavePage()),
+        GetPage(name: '/mindMap', page: () => const MindMapPage()),
       ],
     );
   }

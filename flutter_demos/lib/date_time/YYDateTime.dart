@@ -3,17 +3,11 @@
  * Copyright © 2024 XianShun Limited.
  */
 
-import 'package:intl/intl.dart';
-
 class YYDateTime {
-
   static int getDayStartTime(int timeStamp) {
     DateTime targetDateTime = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     return DateTime(
-        targetDateTime.year, targetDateTime.month, targetDateTime.day)
+            targetDateTime.year, targetDateTime.month, targetDateTime.day)
         .millisecondsSinceEpoch;
   }
-
-
-
 }

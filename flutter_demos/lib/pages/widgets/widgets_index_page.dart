@@ -72,9 +72,21 @@ class _HomeDemoPageState extends State<HomeDemoPage> {
                 }),
             const SizedBox(height: 8),
             IElevatedButton(
-                title: 'Test Audio',
+                title: 'Test Drawer',
                 onTap: (index) {
                   Get.toNamed('/drawer');
+                }),
+            const SizedBox(height: 8),
+            IElevatedButton(
+                title: 'Test -> audio_waveforms^1.3.0',
+                onTap: (index) {
+                  Get.toNamed('/audioWave');
+                }),
+            const SizedBox(height: 8),
+            IElevatedButton(
+                title: 'Test Mind Map',
+                onTap: (index) {
+                  Get.toNamed('/mindMap');
                 }),
           ],
         ).paddingSymmetric(horizontal: 8),
