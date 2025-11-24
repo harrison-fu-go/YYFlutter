@@ -88,6 +88,12 @@ class _HomeDemoPageState extends State<HomeDemoPage> {
                 onTap: (index) {
                   Get.toNamed('/mindMap');
                 }),
+            const SizedBox(height: 8),
+            IElevatedButton(
+                title: 'Audio Edit Page',
+                onTap: (index) {
+                  Get.toNamed('/audioEdit');
+                }),
           ],
         ).paddingSymmetric(horizontal: 8),
       ),

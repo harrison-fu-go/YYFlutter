@@ -49,16 +49,16 @@ class WaveformPageState extends State<MyAudioWavePage> {
       File audioFile;
 
       // 选择要加载的音频文件
-      // const bool useMp3 = false; // 设置为 true 使用 MP3，false 使用 PCM
+      //const bool useMp3 = false; // 设置为 true 使用 MP3，false 使用 PCM
       // 使用 MP3 文件
-      // audioFile = File('${tempDir.path}/20250530095317.mp3');
-      // if (!await audioFile.exists()) {
-      //   final byteData = await rootBundle.load('assets/20250530095317.mp3');
-      //   await audioFile.writeAsBytes(byteData.buffer.asUint8List());
-      // }
+      audioFile = File('${tempDir.path}/20250530095317.mp3');
+      if (!await audioFile.exists()) {
+        final byteData = await rootBundle.load('assets/20250530095317.mp3');
+        await audioFile.writeAsBytes(byteData.buffer.asUint8List());
+      }
 
       // 使用 PCM 文件（需要转换为 WAV）
-      audioFile = await _convertPcmToWav(tempDir);
+      //audioFile = await _convertPcmToWav(tempDir);
 
       _audioPath = audioFile.path;
 
@@ -135,10 +135,11 @@ class WaveformPageState extends State<MyAudioWavePage> {
             AudioFileWaveforms(
               size: Size(sW, 100),
               playerController: playerCtr,
-              enableSeekGesture: true,
+              enableSeekGesture: false,
               waveformType: WaveformType.fitWidth,
               playerWaveStyle: PlayerWaveStyle(
-                fixedWaveColor: Colors.black.xsAlpha(0.30),
+                fixedWaveColor:
+                    const Color.fromARGB(255, 3, 2, 2).xsAlpha(0.30),
                 liveWaveColor: Colors.red.xsAlpha(0.80),
                 waveThickness: waveThickness,
                 seekLineThickness: 5.0,
@@ -163,8 +164,16 @@ class WaveformPageState extends State<MyAudioWavePage> {
             ),
             const SizedBox(height: 40),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // ▶️ 播放按钮
+                Transform.rotate(
+                  angle: 3.14159,
+                  child: IconButton(
+                      iconSize: 64,
+                      icon: const Icon(Icons.next_plan),
+                      onPressed: skipBackward15s),
+                ),
                 IconButton(
                   iconSize: 64,
                   icon:
@@ -304,6 +313,16 @@ extension WaveformPagelogic on WaveformPageState {
     print('===== totalDuration: $totalDuration');
     if (targetPos > totalDuration) {
       targetPos = totalDuration;
+    }
+    await playerCtr.seekTo(targetPos);
+  }
+
+  void skipBackward15s() async {
+    // 获取当前播放进度（单位: 毫秒）
+    int currentPos = await playerCtr.getDuration(DurationType.current);
+    int targetPos = currentPos - 15000;
+    if (targetPos < 0) {
+      targetPos = 0;
     }
     await playerCtr.seekTo(targetPos);
   }

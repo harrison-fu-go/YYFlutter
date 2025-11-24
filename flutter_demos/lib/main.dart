@@ -5,6 +5,7 @@ import 'package:flutter_demos/crypt/aes.dart';
 import 'package:flutter_demos/crypt/hash_utils.dart';
 import 'package:flutter_demos/crypt/rsa.dart';
 import 'package:flutter_demos/date_time/YYDateTime.dart';
+import 'package:flutter_demos/pages/widgets/audio_edit/audio_edit_page.dart';
 import 'package:flutter_demos/pages/widgets/mark_down_test.dart';
 import 'package:flutter_demos/pages/widgets/my_audio_test_page.dart';
 import 'package:flutter_demos/pages/widgets/my_drawer_animation_page.dart';
@@ -96,6 +97,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/drawer', page: () => const MyDrawerAnimationPage()),
         GetPage(name: '/audioWave', page: () => const MyAudioWavePage()),
         GetPage(name: '/mindMap', page: () => const MindMapPage()),
+        GetPage(name: '/audioEdit', page: () => const AudioEditPage()),
       ],
     );
   }
