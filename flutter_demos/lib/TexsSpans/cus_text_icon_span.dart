@@ -27,9 +27,7 @@ class RichTextWithIconState extends State<RichTextWithIcon> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: RichText(
-            text: TextSpan(children: getSpans())));
+    return RichText(text: TextSpan(children: getSpans()));
   }
 
   List<InlineSpan> getSpans() {
@@ -50,7 +48,6 @@ class RichTextWithIconState extends State<RichTextWithIcon> {
   }
 }
 
-
 class TextSpanModel {
   TextStyle defaultSty = const TextStyle(color: Colors.black, fontSize: 14);
   bool? isIcon = false;
@@ -61,7 +58,13 @@ class TextSpanModel {
   bool? iNeedTap = false;
   Function(String)? onTapCallback;
 
-  TextSpanModel({this.isIcon, this.text, this.icon, this.iconSel, this.style, this.iNeedTap});
+  TextSpanModel(
+      {this.isIcon,
+      this.text,
+      this.icon,
+      this.iconSel,
+      this.style,
+      this.iNeedTap});
 
   InlineSpan getSpan({bool enable = false}) {
     if (isIcon == true) {
@@ -73,6 +76,7 @@ class TextSpanModel {
 
   InlineSpan getIcon({bool enable = false}) {
     return WidgetSpan(
+      alignment: PlaceholderAlignment.middle,
       child: GestureDetector(
           onTap: iNeedTap == true
               ? () {
@@ -81,12 +85,16 @@ class TextSpanModel {
               : null,
           child: (icon != null)
               ? Image.asset(
-                  (enable ? icon! : (iconSel ?? icon!)), // Replace with your image path
+                  (enable
+                      ? icon!
+                      : (iconSel ?? icon!)), // Replace with your image path
                   width: style?.height ?? 10,
                   height: style?.height ?? 10,
                 )
               : Icon(
-                  enable ? Icons.check_box_outlined : Icons.check_box_outline_blank,
+                  enable
+                      ? Icons.check_box_outlined
+                      : Icons.check_box_outline_blank,
                   color: style?.color ?? Colors.black,
                   size: style?.height ?? 100,
                 )),

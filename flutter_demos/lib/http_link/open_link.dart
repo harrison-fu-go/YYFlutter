@@ -6,8 +6,8 @@
 import 'package:url_launcher/url_launcher.dart';
 
 class OpenLink {
-  static void launchURL() async {
-    final url = Uri.parse('https://www.example.com');  // 需要打开的链接
+  static void launchURL({String? toUrl}) async {
+    final url = Uri.parse(toUrl ?? 'https://www.example.com'); // 需要打开的链接
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
