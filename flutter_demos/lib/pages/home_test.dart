@@ -12,7 +12,6 @@ import 'package:flutter_demos/system_info/app_info.dart';
 import 'package:flutter_demos/system_info/device_info.dart';
 import 'package:get/get.dart';
 import 'package:gyges_logger/gyges_logger.dart';
-import '../TexsSpans/cus_text_icon_span.dart';
 import '../getX/get_x_controller.dart';
 import '../strings/string_util.dart';
 
@@ -148,20 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('打印设备相关信息'),
           ),
           const SizedBox(height: 8),
-          RichTextWithIcon(
-            spanModels: [
-              TextSpanModel(
-                  isIcon: true,
-                  iNeedTap: true,
-                  style: const TextStyle(height: 24)),
-              TextSpanModel(text: 'hello-->'),
-              TextSpanModel(text: 'helllllll')
-            ],
-            onTapCallback: (val) {
-              print('=========> RichTextWithIcon info: $val');
-            },
-          ),
-          const SizedBox(height: 8),
           ElevatedButton(
             onPressed: () async {
               String sha256_1 = demoHmac0();
@@ -217,6 +202,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('计算checkSum'),
           ),
           const SizedBox(height: 8),
+          //RichText with custom text span
           XsCusTextSpan(
             textSpans: [
               ITxtSpan(
@@ -232,10 +218,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   onTap: (val) {
                     print('=========> icon tap: $val');
                   }),
-              ITxtSpan(text: ' helllllll'),
+              ITxtSpan(text: ' helllllll '),
+              ITxtSpan(
+                  iconData: Icons.favorite,
+                  iconDataSel: Icons.favorite_border,
+                  iconSize: 28,
+                  onTap: (val) {
+                    print('=========> icon data tap: $val');
+                  }),
             ],
-            defHsty: const TextStyle(fontSize: 20, color: Colors.green),
-            defNSty: const TextStyle(fontSize: 20, color: Colors.black),
+            defHsty: const TextStyle(fontSize: 20, color: Colors.purple),
+            defNSty: const TextStyle(fontSize: 20, color: Colors.red),
           ),
         ],
       ).paddingOnly(left: 16),

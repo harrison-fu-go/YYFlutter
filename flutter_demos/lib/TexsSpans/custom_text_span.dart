@@ -12,6 +12,8 @@ class ITxtSpan {
   double? iconSize;
   double iconWidth;
   double iconHeight;
+  IconData? iconData;
+  IconData? iconDataSel;
   //for on tap callback
   ValueChanged<String>? onTap;
   ITxtSpan({
@@ -20,14 +22,16 @@ class ITxtSpan {
     this.tapLink,
     this.icon,
     this.iconSel,
+    this.iconData,
+    this.iconDataSel,
     this.selected = false,
     this.iconSize,
-    this.iconWidth = 10,
-    this.iconHeight = 10,
+    this.iconWidth = 18,
+    this.iconHeight = 18,
     this.onTap,
   });
   bool isIcon() {
-    return icon != null;
+    return icon != null || iconData != null;
   }
 
   bool isNeedTap() {
@@ -85,27 +89,50 @@ class _XsCusTextSpanState extends State<XsCusTextSpan> {
 
   InlineSpan _getIconSpan(ITxtSpan info) {
     bool isSelected = info.selected;
-    String? icon = isSelected ? info.iconSel : info.icon;
-    icon ??= info.icon; //default icon.
-    if (icon == null) {
-      throw Exception('icon is null');
+    if (info.icon != null) {
+      String? icon = isSelected ? info.iconSel : info.icon;
+      icon ??= info.icon; //default icon.
+      if (icon == null) {
+        throw Exception('icon is null');
+      }
+      double width = info.iconSize ?? info.iconWidth;
+      double height = info.iconSize ?? info.iconHeight;
+      return WidgetSpan(
+          alignment: PlaceholderAlignment.middle,
+          child: GestureDetector(
+            onTap: () {
+              info.selected = !info.selected;
+              info.onTap?.call(info.selected ? '1' : '0');
+              setState(() {});
+            },
+            child: Image.asset(
+              icon,
+              width: width,
+              height: height,
+            ),
+          ));
+    } else {
+      IconData? iconData = isSelected ? info.iconDataSel : info.iconData;
+      iconData ??= info.iconData; //default icon.
+      if (iconData == null) {
+        throw Exception('icon data is null');
+      }
+      double size = info.iconSize ?? info.iconWidth;
+      return WidgetSpan(
+          alignment: PlaceholderAlignment.middle,
+          child: GestureDetector(
+            onTap: () {
+              info.selected = !info.selected;
+              info.onTap?.call(info.selected ? '1' : '0');
+              setState(() {});
+            },
+            child: Icon(
+              iconData,
+              color: info.sty?.color ?? widget.defNSty?.color ?? Colors.black,
+              size: size,
+            ),
+          ));
     }
-    double width = info.iconSize ?? info.iconWidth;
-    double height = info.iconSize ?? info.iconHeight;
-    return WidgetSpan(
-        alignment: PlaceholderAlignment.middle,
-        child: GestureDetector(
-          onTap: () {
-            info.selected = !info.selected;
-            info.onTap?.call(info.selected ? '1' : '0');
-            setState(() {});
-          },
-          child: Image.asset(
-            icon,
-            width: width,
-            height: height,
-          ),
-        ));
   }
 
   @override
