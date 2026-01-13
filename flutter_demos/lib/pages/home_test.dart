@@ -16,8 +16,7 @@ import '../getX/get_x_controller.dart';
 import '../strings/string_util.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -128,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red.withAlpha(188),
-        title: Text(widget.title),
+        title: const Text('Main Page'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -206,8 +205,13 @@ class _MyHomePageState extends State<MyHomePage> {
           XsCusTextSpan(
             textSpans: [
               ITxtSpan(
-                  text: 'hello--> ',
+                  text: 'https://www.baidu.com',
                   tapLink: 'https://www.baidu.com',
+                  sty: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
                   onTap: (val) {
                     OpenLink.launchURL(toUrl: val);
                   }),
@@ -220,9 +224,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   }),
               ITxtSpan(text: ' helllllll '),
               ITxtSpan(
-                  iconData: Icons.favorite,
-                  iconDataSel: Icons.favorite_border,
-                  iconSize: 28,
+                  iconData: Icons.favorite_border,
+                  iconDataSel: Icons.favorite,
+                  iconSize: 24,
                   onTap: (val) {
                     print('=========> icon data tap: $val');
                   }),

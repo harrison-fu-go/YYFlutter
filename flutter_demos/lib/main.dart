@@ -125,9 +125,7 @@ class _HomePageState extends State<HomePage> {
           });
         },
         children: [
-          const MyHomePage(
-            title: 'My test page',
-          ),
+          const MyHomePage(),
           const HomePage2(),
           ContactPickerPage(),
           const HomeDemoPage()
